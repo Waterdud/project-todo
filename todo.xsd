@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    
+    <!-- Root element definition -->
+    <xs:element name="tasks" type="TasksType"/>
+    
+    <!-- Complex type for tasks container -->
+    <xs:complexType name="TasksType">
+        <xs:sequence>
+            <xs:element name="task" type="TaskType" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- Complex type for individual task -->
+    <xs:complexType name="TaskType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:positiveInteger"/>
+            <xs:element name="kuupaev" type="xs:date"/>
+            <xs:element name="tahtaeg" type="xs:date"/>
+            <xs:element name="oppeaine" type="SubjectType"/>
+            <xs:element name="info" type="xs:string"/>
+            <xs:element name="ylesanne" type="TaskTitleType"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- Simple type for subject with restrictions -->
+    <xs:simpleType name="SubjectType">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="50"/>
+            <xs:pattern value="[A-Za-zÀ-ÿ\s]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- Simple type for task title with restrictions -->
+    <xs:simpleType name="TaskTitleType">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="100"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+</xs:schema>
