@@ -41,21 +41,21 @@
             <body>
                 <div class="container">
                     <div class="header">
-                        <h1>📊 Matemaatika Tasks</h1>
+                        <h1>Matemaatika Tasks</h1>
                     </div>
                     
                     <div class="navigation">
                         <div class="nav-buttons">
-                            <a href="tasks.xml" class="nav-btn active">🏠 Home</a>
-                            <a href="todo_add.xml" class="nav-btn">➕ Add Task</a>
-                            <a href="todo_json.xml" class="nav-btn">📄 JSON</a>
+                            <a href="tasks.xml" class="nav-btn active">Home</a>
+                            <a href="todo_add.xml" class="nav-btn">Lisa ülesanne</a>
+                            <a href="todo_json.xml" class="nav-btn">JSON</a>
                         </div>
                     </div>
                     
                     <div class="content">
                         <div class="filter-info">
-                            📚 Показаны только задачи по предмету: <strong>Matemaatika</strong>
-                            (<xsl:value-of select="count(tasks/task[oppeaine = 'Matemaatika'])"/> из <xsl:value-of select="count(tasks/task)"/> задач)
+                            Näidatakse ainult ülesanded aine: <strong>Matemaatika</strong>
+                            (<xsl:value-of select="count(tasks/task[oppeaine = 'Matemaatika'])"/> / <xsl:value-of select="count(tasks/task)"/> ülesannet)
                         </div>
                         
                         <table>
@@ -79,7 +79,7 @@
                                     <xsl:otherwise>
                                         <tr>
                                             <td colspan="6" class="no-results">
-                                                🔍 Задач по предмету "Matemaatika" не найдено
+                                                Aine "Matemaatika" ülesandeid ei leitud
                                             </td>
                                         </tr>
                                     </xsl:otherwise>
@@ -88,7 +88,7 @@
                         </table>
                         
                         <div style="margin-top: 30px; text-align: center;">
-                            <a href="tasks.xml" style="display: inline-block; padding: 12px 24px; background: #888; color: #fff; text-decoration: none; border-radius: 5px; font-weight: 500;">← Показать все задачи</a>
+                            <a href="tasks.xml" style="display: inline-block; padding: 12px 24px; background: #888; color: #fff; text-decoration: none; border-radius: 5px; font-weight: 500;">← Показать все ülesannetи</a>
                         </div>
                     </div>
                 </div>

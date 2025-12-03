@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method="html" encoding="UTF-8" indent="yes"/>
-    
+
     <!-- Parameter for filtering by subject -->
     <xsl:param name="filterSubject" select="'Matemaatika'"/>
-    
+
     <xsl:template match="/">
         <html lang="et">
             <head>
@@ -18,7 +18,7 @@
                         padding: 0;
                         box-sizing: border-box;
                     }
-                    
+
                     body {
                         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                         background-color: #f5f5f5;
@@ -26,7 +26,7 @@
                         line-height: 1.6;
                         padding: 20px;
                     }
-                    
+
                     .container {
                         max-width: 1200px;
                         margin: 0 auto;
@@ -35,33 +35,33 @@
                         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
                         overflow: hidden;
                     }
-                    
+
                     .header {
                         background-color: #eeeeee;
                         padding: 30px;
                         border-bottom: 2px solid #cccccc;
                     }
-                    
+
                     h1 {
                         color: #444;
                         font-weight: 300;
                         font-size: 2.5em;
                         text-align: center;
                     }
-                    
+
                     .navigation {
                         background-color: #ffffff;
                         padding: 20px 30px;
                         border-bottom: 1px solid #eeeeee;
                     }
-                    
+
                     .nav-buttons {
                         display: flex;
                         gap: 15px;
                         justify-content: center;
                         flex-wrap: wrap;
                     }
-                    
+
                     .nav-btn {
                         display: inline-block;
                         padding: 12px 24px;
@@ -73,22 +73,22 @@
                         transition: all 0.3s ease;
                         border: 2px solid transparent;
                     }
-                    
+
                     .nav-btn:hover {
                         background-color: #cccccc;
                         transform: translateY(-2px);
                     }
-                    
+
                     .nav-btn.active {
                         background-color: #888;
                         color: #ffffff;
                         border-color: #666;
                     }
-                    
+
                     .content {
                         padding: 30px;
                     }
-                    
+
                     .filter-info {
                         background-color: #d1ecf1;
                         padding: 15px 20px;
@@ -97,7 +97,7 @@
                         border-left: 4px solid #17a2b8;
                         color: #0c5460;
                     }
-                    
+
                     .filter-controls {
                         background-color: #f9f9f9;
                         padding: 20px;
@@ -105,19 +105,19 @@
                         border-radius: 5px;
                         border-left: 4px solid #cccccc;
                     }
-                    
+
                     .filter-title {
                         color: #666;
                         margin-bottom: 15px;
                         font-weight: 600;
                     }
-                    
+
                     .filter-options {
                         display: flex;
                         gap: 10px;
                         flex-wrap: wrap;
                     }
-                    
+
                     .filter-btn {
                         display: inline-block;
                         padding: 8px 15px;
@@ -130,28 +130,28 @@
                         transition: all 0.2s ease;
                         border: 1px solid #ddd;
                     }
-                    
+
                     .filter-btn:hover {
                         background-color: #cccccc;
                         border-color: #bbb;
                     }
-                    
+
                     .filter-btn.active {
                         background-color: #17a2b8;
                         color: #ffffff;
                         border-color: #17a2b8;
                     }
-                    
+
                     .table-container {
                         overflow-x: auto;
                     }
-                    
+
                     table {
                         width: 100%;
                         border-collapse: collapse;
                         background-color: #ffffff;
                     }
-                    
+
                     th {
                         background-color: #eeeeee;
                         color: #444;
@@ -160,7 +160,7 @@
                         font-weight: 600;
                         border-bottom: 2px solid #cccccc;
                     }
-                    
+
                     th a {
                         color: inherit;
                         text-decoration: none;
@@ -168,31 +168,31 @@
                         width: 100%;
                         height: 100%;
                     }
-                    
+
                     td {
                         padding: 15px 12px;
                         border-bottom: 1px solid #eeeeee;
                         color: #555;
                         vertical-align: top;
                     }
-                    
+
                     tr:nth-child(even) {
                         background-color: #fafafa;
                     }
-                    
+
                     tr:hover {
                         background-color: #f0f0f0;
                     }
-                    
+
                     .task-id {
                         font-weight: 600;
                         color: #666;
                     }
-                    
+
                     .task-deadline {
                         font-weight: 500;
                     }
-                    
+
                     .task-subject {
                         font-weight: 600;
                         color: #17a2b8;
@@ -202,37 +202,37 @@
                         font-size: 1.1em;
                         border-left: 3px solid #17a2b8;
                     }
-                    
+
                     .no-results {
                         text-align: center;
                         padding: 40px 20px;
                         color: #666;
                         font-style: italic;
                     }
-                    
+
                     /* Responsive */
                     @media (max-width: 768px) {
                         .container {
                             margin: 10px;
                             border-radius: 0;
                         }
-                        
+
                         .header, .content, .navigation {
                             padding: 20px;
                         }
-                        
+
                         h1 {
                             font-size: 2em;
                         }
-                        
+
                         .nav-buttons, .filter-options {
                             justify-content: center;
                         }
-                        
+
                         table {
                             font-size: 14px;
                         }
-                        
+
                         th, td {
                             padding: 10px 8px;
                         }
@@ -242,25 +242,25 @@
             <body>
                 <div class="container">
                     <div class="header">
-                        <h1>🔍 Filter: <xsl:value-of select="$filterSubject"/></h1>
+                        <h1>Filter: <xsl:value-of select="$filterSubject"/></h1>
                     </div>
-                    
+
                     <div class="navigation">
                         <div class="nav-buttons">
-                            <a href="tasks.xml" class="nav-btn active">🏠 Home</a>
-                            <a href="todo_add.xml" class="nav-btn">➕ Add Task</a>
-                            <a href="todo_json.xml" class="nav-btn">📄 JSON</a>
+                            <a href="tasks.xml" class="nav-btn active">Avaleht</a>
+                            <a href="todo_add.xml" class="nav-btn">Lisa ülesanne</a>
+                            <a href="todo_json.xml" class="nav-btn">JSON</a>
                         </div>
                     </div>
-                    
+
                     <div class="content">
                         <div class="filter-info">
-                            📚 Показаны только задачи по предмету: <strong><xsl:value-of select="$filterSubject"/></strong>
-                            (<xsl:value-of select="count(tasks/task[oppeaine = $filterSubject])"/> из <xsl:value-of select="count(tasks/task)"/> задач)
+                            Näidatakse ainult selle aine ülesandeid: <strong><xsl:value-of select="$filterSubject"/></strong>
+                            (<xsl:value-of select="count(tasks/task[oppeaine = $filterSubject])"/> / <xsl:value-of select="count(tasks/task)"/> ülesannet)
                         </div>
-                        
+
                         <div class="filter-controls">
-                            <div class="filter-title">🔍 Другие предметы:</div>
+                            <div class="filter-title">Teised ained:</div>
                             <div class="filter-options">
                                 <xsl:for-each select="tasks/task[not(oppeaine = preceding-sibling::task/oppeaine)]">
                                     <xsl:sort select="oppeaine"/>
@@ -271,10 +271,10 @@
                                         <xsl:value-of select="oppeaine"/> (<xsl:value-of select="count(../../task[oppeaine = current()/oppeaine])"/>)
                                     </a>
                                 </xsl:for-each>
-                                <a href="tasks.xml" class="filter-btn">✖️ Показать все</a>
+                                <a href="tasks.xml" class="filter-btn">Näita kõiki</a>
                             </div>
                         </div>
-                        
+
                         <div class="table-container">
                             <xsl:choose>
                                 <xsl:when test="count(tasks/task[oppeaine = $filterSubject]) > 0">
@@ -298,8 +298,8 @@
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <div class="no-results">
-                                        <h3>🔍 Результаты не найдены</h3>
-                                        <p>По предмету "<xsl:value-of select="$filterSubject"/>" задач не найдено.</p>
+                                        <h3>Tulemusi ei leitud</h3>
+                                        <p>Aine "<xsl:value-of select="$filterSubject"/>" ülesandeid ei leitud.</p>
                                         <br/>
                                         <a href="tasks.xml" style="color: #17a2b8; text-decoration: none;">← Вернуться к полному списку</a>
                                     </div>
@@ -311,7 +311,7 @@
             </body>
         </html>
     </xsl:template>
-    
+
     <xsl:template match="task">
         <tr>
             <td class="task-id"><xsl:value-of select="id"/></td>

@@ -1,57 +1,56 @@
 <?php
 /**
- * TODO List - Form Handler
- * Real XML saving functionality
+ * TODO List - Vormi töötleja
+ * Reaalne XML salvestamise funktsioon
  */
 
-// Set content type and encoding
-header('Content-Type: text/html; charset=UTF-8');
+// Määra sisu tüüp ja kodeering
+header("Content-Type: text/html; charset=UTF-8");
 
-// Check if form was submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-    // Sanitize and validate input data
-    $id = intval($_POST['id'] ?? 0);
-    $kuupaev = htmlspecialchars($_POST['kuupaev'] ?? '', ENT_QUOTES, 'UTF-8');
-    $tahtaeg = htmlspecialchars($_POST['tahtaeg'] ?? '', ENT_QUOTES, 'UTF-8');
-    $oppeaine = htmlspecialchars($_POST['oppeaine'] ?? '', ENT_QUOTES, 'UTF-8');
-    $ylesanne = htmlspecialchars($_POST['ylesanne'] ?? '', ENT_QUOTES, 'UTF-8');
-    $info = htmlspecialchars($_POST['info'] ?? '', ENT_QUOTES, 'UTF-8');
-    
-    // Basic validation
+// Kontrolli, kas vorm on esitatud
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Puhasta ja valideeri sisendandmed
+    $id = intval($_POST["id"] ?? 0);
+    $kuupaev = htmlspecialchars($_POST["kuupaev"] ?? "", ENT_QUOTES, "UTF-8");
+    $tahtaeg = htmlspecialchars($_POST["tahtaeg"] ?? "", ENT_QUOTES, "UTF-8");
+    $oppeaine = htmlspecialchars($_POST["oppeaine"] ?? "", ENT_QUOTES, "UTF-8");
+    $ylesanne = htmlspecialchars($_POST["ylesanne"] ?? "", ENT_QUOTES, "UTF-8");
+    $info = htmlspecialchars($_POST["info"] ?? "", ENT_QUOTES, "UTF-8");
+
+    // Põhiline valideerimine
     $errors = [];
-    
+
     if (empty($kuupaev)) {
-        $errors[] = 'Kuupäev on kohustuslik';
+        $errors[] = "Kuupäev on kohustuslik";
     }
-    
+
     if (empty($tahtaeg)) {
-        $errors[] = 'Tähtaeg on kohustuslik';
+        $errors[] = "Tähtaeg on kohustuslik";
     }
-    
+
     if (empty($oppeaine)) {
-        $errors[] = 'Õppeaine on kohustuslik';
+        $errors[] = "Õppeaine on kohustuslik";
     }
-    
+
     if (empty($ylesanne)) {
-        $errors[] = 'Ülesande pealkiri on kohustuslik';
+        $errors[] = "Ülesande pealkiri on kohustuslik";
     }
-    
+
     // Check if deadline is after creation date
     if (!empty($kuupaev) && !empty($tahtaeg)) {
         if (strtotime($tahtaeg) <= strtotime($kuupaev)) {
-            $errors[] = 'Tähtaeg peab olema hiljem kui loomiskuupäev';
+            $errors[] = "Tähtaeg peab olema hiljem kui loomiskuupäev";
         }
     }
-    
+
     if (empty($errors)) {
-        // Success page
+        // Edukas leht
         echo '<!DOCTYPE html>
         <html lang="et">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Task Added - TODO List</title>
+            <title>Ülesanne lisatud - TODO List</title>
             <style>
                 body { font-family: "Segoe UI", sans-serif; background: #f5f5f5; padding: 20px; }
                 .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center; }
@@ -63,35 +62,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </head>
         <body>
             <div class="container">
-                <h1>✅ Task Successfully Added!</h1>
-                <p class="success">Your new task has been saved to the system.</p>
-                
+                <h1>Ülesanne edukalt lisatud!</h1>
+                <p class="success">Teie uus ülesanne on süsteemi salvestatud.</p>
+
                 <div class="task-details">
-                    <h3>📋 Task Details:</h3>
-                    <p><strong>ID:</strong> ' . $id . '</p>
-                    <p><strong>Subject:</strong> ' . $oppeaine . '</p>
-                    <p><strong>Task:</strong> ' . $ylesanne . '</p>
-                    <p><strong>Created:</strong> ' . $kuupaev . '</p>
-                    <p><strong>Deadline:</strong> ' . $tahtaeg . '</p>
-                    <p><strong>Info:</strong> ' . ($info ?: 'No additional information') . '</p>
+                    <h3>Ülesande üksikasjad:</h3>
+                    <p><strong>ID:</strong> ' .
+            $id .
+            '</p>
+                    <p><strong>Õppeaine:</strong> ' .
+            $oppeaine .
+            '</p>
+                    <p><strong>Ülesanne:</strong> ' .
+            $ylesanne .
+            '</p>
+                    <p><strong>Loodud:</strong> ' .
+            $kuupaev .
+            '</p>
+                    <p><strong>Tähtaeg:</strong> ' .
+            $tahtaeg .
+            '</p>
+                    <p><strong>Info:</strong> ' .
+            ($info ?: "Lisainfot pole") .
+            '</p>
                 </div>
-                
+
                 <div>
-                    <a href="tasks.xml" class="btn">🏠 Back to Home</a>
-                    <a href="todo_add.xml" class="btn">➕ Add Another Task</a>
+                    <a href="tasks.xml" class="btn">Tagasi avalehele</a>
+                    <a href="todo_add.xml" class="btn">Lisa veel ülesanne</a>
                 </div>
             </div>
         </body>
         </html>';
-        
     } else {
-        // Error page
+        // Vealeht
         echo '<!DOCTYPE html>
         <html lang="et">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Error - TODO List</title>
+            <title>Viga - TODO List</title>
             <style>
                 body { font-family: "Segoe UI", sans-serif; background: #f5f5f5; padding: 20px; }
                 .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center; }
@@ -103,31 +113,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </head>
         <body>
             <div class="container">
-                <h1>❌ Error Adding Task</h1>
-                <p class="error">Please fix the following errors:</p>
-                
+                <h1>Viga ülesande lisamisel</h1>
+                <p class="error">Palun parandage järgmised vead:</p>
+
                 <div class="errors">
                     <ul>';
-        
+
         foreach ($errors as $error) {
-            echo '<li>' . $error . '</li>';
+            echo "<li>" . $error . "</li>";
         }
-        
+
         echo '    </ul>
                 </div>
-                
+
                 <div>
-                    <a href="javascript:history.back()" class="btn">← Go Back</a>
-                    <a href="todo_add.xml" class="btn">🔄 Try Again</a>
-                </div>
+                    <a href="javascript:history.back()" class="btn">Tagasi</a>
+                    <a href="todo_add.xml" class="btn">Proovi uuesti</a>
+</div>
             </div>
         </body>
         </html>';
     }
-    
 } else {
-    // Redirect to add form if accessed directly
-    header('Location: todo_add.xml');
-    exit;
+    // Suuna lisamise vormile, kui otse külastatud
+    header("Location: todo_add.xml");
+    exit();
 }
 ?>

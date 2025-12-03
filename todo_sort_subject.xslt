@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method="html" encoding="UTF-8" indent="yes"/>
-    
+
     <xsl:template match="/">
         <html lang="et">
             <head>
@@ -15,7 +15,7 @@
                         padding: 0;
                         box-sizing: border-box;
                     }
-                    
+
                     body {
                         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                         background-color: #f5f5f5;
@@ -23,7 +23,7 @@
                         line-height: 1.6;
                         padding: 20px;
                     }
-                    
+
                     .container {
                         max-width: 1200px;
                         margin: 0 auto;
@@ -32,33 +32,33 @@
                         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
                         overflow: hidden;
                     }
-                    
+
                     .header {
                         background-color: #eeeeee;
                         padding: 30px;
                         border-bottom: 2px solid #cccccc;
                     }
-                    
+
                     h1 {
                         color: #444;
                         font-weight: 300;
                         font-size: 2.5em;
                         text-align: center;
                     }
-                    
+
                     .navigation {
                         background-color: #ffffff;
                         padding: 20px 30px;
                         border-bottom: 1px solid #eeeeee;
                     }
-                    
+
                     .nav-buttons {
                         display: flex;
                         gap: 15px;
                         justify-content: center;
                         flex-wrap: wrap;
                     }
-                    
+
                     .nav-btn {
                         display: inline-block;
                         padding: 12px 24px;
@@ -70,38 +70,38 @@
                         transition: all 0.3s ease;
                         border: 2px solid transparent;
                     }
-                    
+
                     .nav-btn:hover {
                         background-color: #cccccc;
                         transform: translateY(-2px);
                     }
-                    
+
                     .nav-btn.active {
                         background-color: #888;
                         color: #ffffff;
                         border-color: #666;
                     }
-                    
+
                     .content {
                         padding: 30px;
                     }
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
                     .sort-title {
                         color: #666;
                         margin-bottom: 15px;
                         font-weight: 600;
                     }
-                    
+
                     .sort-buttons {
                         display: flex;
                         gap: 10px;
                         flex-wrap: wrap;
                     }
-                    
+
                     .sort-btn {
                         display: inline-block;
                         padding: 10px 18px;
@@ -114,28 +114,28 @@
                         transition: all 0.2s ease;
                         border: 1px solid #ddd;
                     }
-                    
+
                     .sort-btn:hover {
                         background-color: #cccccc;
                         border-color: #bbb;
                     }
-                    
+
                     .sort-btn.active {
                         background-color: #28a745;
                         color: #ffffff;
                         border-color: #28a745;
                     }
-                    
+
                     .table-container {
                         overflow-x: auto;
                     }
-                    
+
                     table {
                         width: 100%;
                         border-collapse: collapse;
                         background-color: #ffffff;
                     }
-                    
+
                     th {
                         background-color: #eeeeee;
                         color: #444;
@@ -145,12 +145,12 @@
                         border-bottom: 2px solid #cccccc;
                         position: relative;
                     }
-                    
+
                     th.active {
                         background-color: #28a745;
                         color: #ffffff;
                     }
-                    
+
                     th a {
                         color: inherit;
                         text-decoration: none;
@@ -158,31 +158,31 @@
                         width: 100%;
                         height: 100%;
                     }
-                    
+
                     td {
                         padding: 15px 12px;
                         border-bottom: 1px solid #eeeeee;
                         color: #555;
                         vertical-align: top;
                     }
-                    
+
                     tr:nth-child(even) {
                         background-color: #fafafa;
                     }
-                    
+
                     tr:hover {
                         background-color: #f0f0f0;
                     }
-                    
+
                     .task-id {
                         font-weight: 600;
                         color: #666;
                     }
-                    
+
                     .task-deadline {
                         font-weight: 500;
                     }
-                    
+
                     .task-subject {
                         font-weight: 600;
                         color: #28a745;
@@ -192,52 +192,52 @@
                         font-size: 1.1em;
                         border-left: 3px solid #28a745;
                     }
-                    
+
                     /* Subject grouping visual effect */
                     .subject-group {
                         background-color: #f8f9fa;
                         border-left: 4px solid #28a745;
                     }
-                    
+
                     /* Different colors for different subjects */
                     .subject-math {
                         background-color: #fff3cd;
                         border-left-color: #ffc107;
                     }
-                    
+
                     .subject-programming {
                         background-color: #d1ecf1;
                         border-left-color: #17a2b8;
                     }
-                    
+
                     .subject-database {
                         background-color: #d4edda;
                         border-left-color: #28a745;
                     }
-                    
+
                     /* Responsive */
                     @media (max-width: 768px) {
                         .container {
                             margin: 10px;
                             border-radius: 0;
                         }
-                        
+
                         .header, .content, .navigation {
                             padding: 20px;
                         }
-                        
+
                         h1 {
                             font-size: 2em;
                         }
-                        
+
                         .nav-buttons, .sort-buttons {
                             justify-content: center;
                         }
-                        
+
                         table {
                             font-size: 14px;
                         }
-                        
+
                         th, td {
                             padding: 10px 8px;
                         }
@@ -247,29 +247,35 @@
             <body>
                 <div class="container">
                     <div class="header">
-                        <h1>📚 TODO List - Sort by Subject</h1>
+                        <h1>TODO List - Sorteeri aine järgi</h1>
                     </div>
-                    
+
                     <div class="navigation">
                         <div class="nav-buttons">
-                            <a href="tasks.xml" class="nav-btn active">🏠 Home</a>
-                            <a href="todo_add.xml" class="nav-btn">➕ Add Task</a>
-                            <a href="todo_json.xml" class="nav-btn">📄 JSON</a>
+                            <a href="tasks.xml" class="nav-btn active">Avaleht</a>
+                            <a href="todo_add.xml" class="nav-btn">Lisa ülesanne</a>
+                            <a href="todo_json.xml" class="nav-btn">JSON</a>
                         </div>
                     </div>
-                    
-                
-                        
-                        
-                        
+
+                    <div class="content">
+                        <!-- Sort Info Panel -->
+                        <div style="margin-bottom: 20px; padding: 15px; background-color: #d1ecf1; border-left: 4px solid #28a745; border-radius: 5px;">
+                            <p style="color: #0c5460; font-weight: 500; margin-bottom: 10px;">Sorteeritud õppeaine järgi (tähestikuliselt)</p>
+                            <a href="tasks.xml" style="display: inline-block; padding: 8px 16px; background-color: #fff; color: #444; text-decoration: none; border-radius: 4px; border: 1px solid #bee5eb; font-size: 14px; transition: all 0.2s ease;">← Tagasi avalehele</a>
+                        </div>
+
+
+
+
                         <div class="table-container">
                             <table>
                                 <thead>
                                     <tr>
-                                        <th><a href="todo_sort_id.xml">ID ↕️</a></th>
+                                        <th><a href="todo_sort_id.xml">ID ↕</a></th>
                                         <th>Kuupäev</th>
-                                        <th><a href="todo_sort_date.xml">Tähtaeg ↕️</a></th>
-                                        <th class="active"><a href="todo_sort_subject.xml">Õppeaine 🔽</a></th>
+                                        <th><a href="todo_sort_date.xml">Tähtaeg ↕</a></th>
+                                        <th class="active"><a href="todo_sort_subject.xml">Õppeaine ↓</a></th>
                                         <th>Ülesanne</th>
                                         <th>Info</th>
                                     </tr>
@@ -281,17 +287,17 @@
                                 </tbody>
                             </table>
                         </div>
-                        
+
                         <!-- Subject Statistics -->
                         <div class="sort-panel" style="margin-top: 30px;">
-                            <div class="sort-title">📊 Статистика по предметам:</div>
+                            <div class="sort-title">Statistika ainete kaupa:</div>
                             <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                                 <xsl:for-each select="tasks/task[not(oppeaine = preceding-sibling::task/oppeaine)]">
                                     <xsl:sort select="oppeaine"/>
                                     <xsl:variable name="subject" select="oppeaine"/>
                                     <div style="padding: 10px 15px; background: #f0f0f0; border-radius: 4px; text-align: center;">
                                         <strong><xsl:value-of select="$subject"/></strong><br/>
-                                        <span style="color: #666;"><xsl:value-of select="count(../../task[oppeaine = $subject])"/> задач</span>
+                                        <span style="color: #666;"><xsl:value-of select="count(../../task[oppeaine = $subject])"/> ülesannet</span>
                                     </div>
                                 </xsl:for-each>
                             </div>
@@ -301,7 +307,7 @@
             </body>
         </html>
     </xsl:template>
-    
+
     <xsl:template match="task">
         <tr>
             <td class="task-id"><xsl:value-of select="id"/></td>

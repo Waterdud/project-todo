@@ -1,136 +1,136 @@
-# 🎯 Инструкция по тестированию TODO-lista XSLT Project
+# TODO-lista XSLT projekti testimise juhend
 
-## 📋 Быстрый старт
+## Kiire alustamine
 
-### Шаг 1: Откройте главную страницу
-Откройте файл `tasks.xml` в браузере - это **главная страница** проекта.
+### Samm 1: Avage avaleht
+Avage fail `tasks.xml` brauseris - see on projekti **avaleht**.
 
-### Шаг 2: Протестируйте навигацию
-Используйте кнопки навигации для переключения между страницами:
-- **🏠 Home** - возврат к главной странице
-- **➕ Add Task** - форма добавления новой задачи  
-- **📄 JSON** - просмотр данных в формате JSON
+### Samm 2: Testib navigeerimine
+Kasutage navigeerimisnuppe lehtede vahel liikumiseks:
+- **Home** - tagasi avalehele
+- **Add Task** - uue ülesande lisamise vorm
+- **JSON** - andmete vaatamine JSON formaadis
 
-### Шаг 3: Протестируйте сортировку
-На главной странице нажимайте кнопки сортировки:
-- **🔢 По ID** - сортировка по номеру задачи
-- **📅 По дате (Tähtaeg)** - сортировка по крайнему сроку
-- **📚 По предмету** - группировка по учебным дисциплинам
+### Samm 3: Testib sorteerimist
+Avalehel vajutage sorteerimise nuppe:
+- **ID järgi** - sorteerimine ülesande numbri järgi
+- **Kuupäeva järgi (Tähtaeg)** - sorteerimine tähtaja järgi
+- **Aine järgi** - grupeerimine õppeainete kaupa
 
-## 🧪 Полный список для тестирования
+## Täielik testimise nimekiri
 
-### ✅ Навигация и структура
-- [ ] Главная страница (`tasks.xml`) загружается корректно
-- [ ] Все 3 навигационные кнопки работают
-- [ ] Дизайн использует только серо-белые тона
-- [ ] Адаптивность на мобильных устройствах
+### Navigeerimine ja struktuur
+- [ ] Avaleht (`tasks.xml`) laadib korrektselt
+- [ ] Kõik 3 navigeerimisnuppu töötavad
+- [ ] Disain kasutab ainult hall-valgeid toone
+- [ ] Adaptiivsus mobiilseadmetel
 
-### ✅ Сортировка (только XSLT!)
-- [ ] **По ID**: `todo_sort_id.xml` - числовая сортировка от 1 до 6
-- [ ] **По дате**: `todo_sort_date.xml` - сортировка по tähtaeg (самые срочные первые)
-- [ ] **По предмету**: `todo_sort_subject.xml` - алфавитная группировка
+### Sorteerimine (ainult XSLT!)
+- [ ] **ID järgi**: `todo_sort_id.xml` - numbriline sorteerimine 1-st 6-ni
+- [ ] **Kuupäeva järgi**: `todo_sort_date.xml` - sorteerimine tähtaja järgi (kõige kiireloomulisemad esimesed)
+- [ ] **Aine järgi**: `todo_sort_subject.xml` - tähestikuline grupeerimine
 
-### ✅ Страницы
-- [ ] **Home**: Полная таблица с навигацией и фильтрами
-- [ ] **Add**: Форма добавления с валидацией полей
-- [ ] **JSON**: Корректный JSON-вывод с кнопками действий
+### Lehed
+- [ ] **Home**: Täielik tabel navigeerimise ja filtritega
+- [ ] **Add**: Lisamise vorm väljade valideerimisega
+- [ ] **JSON**: Korrektne JSON-väljund tegevuste nuppudega
 
-### ✅ Дополнительные функции
-- [ ] Фильтрация по предмету "Matemaatika": `todo_filter_matemaatika.xml`
-- [ ] Статистика на главной странице (количество задач/предметов)
-- [ ] Копирование и скачивание JSON
+### Lisafunktsioonid
+- [ ] Filtreerimine aine "Matemaatika" järgi: `todo_filter_matemaatika.xml`
+- [ ] Statistika avalehel (ülesannete/ainete arv)
+- [ ] JSON-i kopeerimine ja allalaadimine
 
-### ✅ Валидация и стандарты
-- [ ] XML валидный согласно XSD схеме (`todo.xsd`)
-- [ ] XSLT 1.0 совместимость
-- [ ] Корректная кодировка UTF-8
+### Valideerimine ja standardid
+- [ ] XML on kehtiv XSD skeemi (`todo.xsd`) kohaselt
+- [ ] XSLT 1.0 ühilduvus
+- [ ] Korrektne UTF-8 kodeering
 
-## 🎨 Что тестировать в дизайне
+## Mida testida disainis
 
-### Цветовая схема:
-- **#ffffff** - белый фон
-- **#eeeeee** - светло-серые элементы
-- **#cccccc** - средне-серые границы
-- **#f5f5f5** - фон страницы
+### Värviskeem:
+- **#ffffff** - valge taust
+- **#eeeeee** - helehallid elemendid
+- **#cccccc** - keskmised hallid piirid
+- **#f5f5f5** - lehe taust
 
-### Типографика:
-- Шрифт: Segoe UI
-- Заголовки с малым весом (font-weight: 300)
-- Адекватные отступы и интерлиньяж
+### Tüpograafia:
+- Font: Segoe UI
+- Pealkirjad väikese kaaluga (font-weight: 300)
+- Adekvaatsed vahed ja ridade kõrgus
 
-### Интерактивность:
-- Наведение на кнопки (hover effects)
-- Подсветка активной сортировки
-- Анимации transition
+### Interaktiivsus:
+- Hõljumine nuppude kohal (hover effects)
+- Aktiivse sorteerimise esiletõstmine
+- Ülemineku animatsioonid
 
-## 🔧 Файлы для тестирования
+## Failid testimiseks
 
-| Файл | Назначение | Что тестировать |
-|------|------------|-----------------|
-| `tasks.xml` | Главная страница | Основной функционал, навигацию |
-| `todo_sort_*.xml` | Сортировка | Каждый тип сортировки отдельно |
-| `todo_add.xml` | Добавление | Форму и существующие предметы |
-| `todo_json.xml` | JSON экспорт | Корректность JSON, кнопки действий |
-| `todo_filter_*.xml` | Фильтрация | Поиск по предметам |
+| Fail | Otstarve | Mida testida |
+|------|----------|--------------|
+| `tasks.xml` | Avaleht | Põhifunktsionaalsus, navigeerimine |
+| `todo_sort_*.xml` | Sorteerimine | Iga sorteerimise tüüp eraldi |
+| `todo_add.xml` | Lisamine | Vorm ja olemasolevad ained |
+| `todo_json.xml` | JSON eksport | JSON korrektsus, tegevuste nupud |
+| `todo_filter_*.xml` | Filtreerimine | Otsing ainete järgi |
 
-## 🚀 Ожидаемое поведение
+## Oodatav käitumine
 
-### Сортировка по ID:
+### Sorteerimine ID järgi:
 ```
-ID: 1, 2, 3, 4, 5, 6 (по возрастанию)
+ID: 1, 2, 3, 4, 5, 6 (kasvavalt)
 ```
 
-### Сортировка по дате:
+### Sorteerimine kuupäeva järgi:
 ```
-2025-01-15 (самый ранний срок)
+2025-01-15 (kõige varasem tähtaeg)
 2025-01-18
 2025-01-20
 2025-01-22
 2025-01-25
-2025-01-30 (самый поздний срок)
+2025-01-30 (kõige hilisem tähtaeg)
 ```
 
-### Сортировка по предмету:
+### Sorteerimine aine järgi:
 ```
-Andmebaasid (2 задачи)
-Matemaatika (2 задачи)  
-Programmeerimine (2 задачи)
+Andmebaasid (2 ülesannet)
+Matemaatika (2 ülesannet)
+Programmeerimine (2 ülesannet)
 ```
 
-## 🐛 Возможные проблемы
+## Võimalikud probleemid
 
-### Если XSLT не применяется:
-1. Используйте современный браузер (Chrome, Firefox, Safari)
-2. Откройте через HTTP-сервер (не file://)
-3. Проверьте кодировку UTF-8
+### Kui XSLT ei rakendu:
+1. Kasutage kaasaegset brauserit (Chrome, Firefox, Safari)
+2. Avage HTTP-serveri kaudu (mitte file://)
+3. Kontrollige UTF-8 kodeeringut
 
-### Если сортировка не работает:
-- Убедитесь, что открываете правильный XML-файл
-- Каждый тип сортировки имеет свой отдельный файл
-- Проверьте XPath-выражения в XSLT
+### Kui sorteerimine ei tööta:
+- Veenduge, et avate õige XML-faili
+- Igal sorteerimise tüübil on oma eraldi fail
+- Kontrollige XPath-avaldisi XSLT-s
 
-### Если стили не загружаются:
-- Все стили встроены в XSLT (не используют внешний CSS)
-- Проверьте `<style>` секции в каждом XSLT
+### Kui stiilid ei laadi:
+- Kõik stiilid on XSLT-sse põimitud (ei kasuta välist CSS-i)
+- Kontrollige `<style>` sektsioone igas XSLT-s
 
-## 📊 Данные для тестирования
+## Andmed testimiseks
 
-Проект содержит 6 тестовых задач:
-- **3 предмета**: Matemaatika, Programmeerimine, Andmebaasid
-- **Даты**: от 2025-01-15 до 2025-01-30
-- **Разные типы задач**: Kodutöö, Projekt, Praktikum, Kontrolltöö, Laboritöö
+Projekt sisaldab 6 test-ülesannet:
+- **3 ainet**: Matemaatika, Programmeerimine, Andmebaasid
+- **Kuupäevad**: 2025-01-15 kuni 2025-01-30
+- **Erinevad ülesannete tüübid**: Kodutöö, Projekt, Praktikum, Kontrolltöö, Laboritöö
 
-## 🎯 Критерии успешного тестирования
+## Edukas testimise kriteeriumid
 
-✅ **Функциональность**: Все 3 типа сортировки работают  
-✅ **Навигация**: Все страницы доступны через кнопки  
-✅ **Дизайн**: Минималистичный серо-белый интерфейс  
-✅ **XSLT**: Сортировка без JavaScript  
-✅ **Стандарты**: Валидный XML/XSLT код  
-✅ **Дополнительно**: JSON экспорт и фильтрация работают  
+Funktsionaalsus: Kõik 3 sorteerimise tüüpi töötavad
+Navigeerimine: Kõik lehed on nuppude kaudu kättesaadavad
+Disain: Minimalistlik hall-valge liides
+XSLT: Sorteerimine ilma JavaScriptita
+Standardid: Kehtiv XML/XSLT kood
+Lisaks: JSON eksport ja filtreerimine töötavad
 
 ---
 
-**Время тестирования**: ~10-15 минут  
-**Рекомендуемый браузер**: Chrome/Firefox  
-**Статус**: Готов к тестированию ✅
+**Testimise aeg**: ~10-15 minutit
+**Soovitatud brauser**: Chrome/Firefox
+**Staatus**: Valmis testimiseks

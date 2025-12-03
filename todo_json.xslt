@@ -232,21 +232,21 @@
             <body>
                 <div class="container">
                     <div class="header">
-                        <h1>📄 JSON Data Export</h1>
+                        <h1>JSON Data Export</h1>
                     </div>
                     
                     <div class="navigation">
                         <div class="nav-buttons">
-                            <a href="tasks.xml" class="nav-btn">🏠 Home</a>
-                            <a href="todo_add.xml" class="nav-btn">➕ Add Task</a>
-                            <a href="todo_json.xml" class="nav-btn active">📄 JSON</a>
+                            <a href="tasks.xml" class="nav-btn">Home</a>
+                            <a href="todo_add.xml" class="nav-btn">Lisa ülesanne</a>
+                            <a href="todo_json.xml" class="nav-btn active">JSON</a>
                         </div>
                     </div>
                     
                     <div class="content">
                         <div class="json-info">
-                            <p><strong>📊 JSON Export</strong></p>
-                            <p>Ниже представлены все задачи в формате JSON. Этот формат удобен для экспорта данных, интеграции с API или импорта в другие системы.</p>
+                            <p><strong>JSON Export</strong></p>
+                            <p>Kõik ülesanded JSON formaadis. See formaat on mugav andmete eksportimiseks, API integreerimiseks või importimiseks teistesse süsteemidesse.</p>
                         </div>
                         
                         <!-- Statistics -->
@@ -267,9 +267,9 @@
                         
                         <!-- Controls -->
                         <div class="json-controls">
-                            <button class="json-btn primary" onclick="copyToClipboard()">📋 Copy JSON</button>
-                            <button class="json-btn" onclick="downloadJSON()">💾 Download</button>
-                            <button class="json-btn" onclick="validateJSON()">✅ Validate</button>
+                            <button class="json-btn primary" onclick="copyToClipboard()">Kopeeri JSON</button>
+                            <button class="json-btn" onclick="downloadJSON()">Laadi alla</button>
+                            <button class="json-btn" onclick="validateJSON()">Valideeri</button>
                         </div>
                         
                         <!-- JSON Output -->
@@ -339,7 +339,7 @@
                         // Show feedback
                         const btn = event.target;
                         const originalText = btn.textContent;
-                        btn.textContent = '✅ Copied!';
+                        btn.textContent = 'Kopeeritud!';
                         btn.style.backgroundColor = '#28a745';
                         
                         setTimeout(() => {
@@ -363,7 +363,7 @@
                         // Show feedback
                         const btn = event.target;
                         const originalText = btn.textContent;
-                        btn.textContent = '📥 Downloaded!';
+                        btn.textContent = '📥 Laadi allaed!';
                         btn.style.backgroundColor = '#007bff';
                         
                         setTimeout(() => {
@@ -380,7 +380,7 @@
                             // Show success
                             const btn = event.target;
                             const originalText = btn.textContent;
-                            btn.textContent = '✅ Valid JSON!';
+                            btn.textContent = 'Kehtiv JSON!';
                             btn.style.backgroundColor = '#28a745';
                             
                             setTimeout(() => {
