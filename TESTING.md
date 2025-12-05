@@ -133,4 +133,4 @@ Lisaks: JSON eksport ja filtreerimine töötavad
 
 **Testimise aeg**: ~10-15 minutit
 **Soovitatud brauser**: Chrome/Firefox
-**Staatus**: Valmis testimiseks
+**Staatus**: Valmis testimiseks.
