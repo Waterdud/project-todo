@@ -237,9 +237,9 @@
                     
                     <div class="navigation">
                         <div class="nav-buttons">
-                            <a href="tasks.xml" class="nav-btn">Home</a>
-                            <a href="todo_add.xml" class="nav-btn">Lisa ülesanne</a>
-                            <a href="todo_json.xml" class="nav-btn active">JSON</a>
+                            <a href="view.php?view=home" class="nav-btn">Home</a>
+                            <a href="view.php?view=add" class="nav-btn">Lisa ülesanne</a>
+                            <a href="view.php?view=json" class="nav-btn active">JSON</a>
                         </div>
                     </div>
                     
@@ -252,11 +252,11 @@
                         <!-- Statistics -->
                         <div class="json-stats">
                             <div class="stat-item">
-                                <span class="stat-number"><xsl:value-of select="count(tasks/task)"/></span>
+                                <span class="stat-number"><xsl:value-of select="count(//task)"/></span>
                                 <span class="stat-label">Total Tasks</span>
                             </div>
                             <div class="stat-item">
-                                <span class="stat-number"><xsl:value-of select="count(tasks/task[not(oppeaine = preceding-sibling::task/oppeaine)])"/></span>
+                                <span class="stat-number"><xsl:value-of select="count(oppeaasta/oppeaine)"/></span>
                                 <span class="stat-label">Subjects</span>
                             </div>
                             <div class="stat-item">
@@ -278,10 +278,10 @@
   <span class="json-key">"meta"</span>: <span class="json-bracket">{</span>
     <span class="json-key">"version"</span>: <span class="json-string">"1.0"</span><span class="json-comma">,</span>
     <span class="json-key">"generated"</span>: <span class="json-string">"2025-12-03"</span><span class="json-comma">,</span>
-    <span class="json-key">"totalTasks"</span>: <span class="json-number"><xsl:value-of select="count(tasks/task)"/></span><span class="json-comma">,</span>
-    <span class="json-key">"subjects"</span>: <span class="json-number"><xsl:value-of select="count(tasks/task[not(oppeaine = preceding-sibling::task/oppeaine)])"/></span>
+    <span class="json-key">"totalTasks"</span>: <span class="json-number"><xsl:value-of select="count(//task)"/></span><span class="json-comma">,</span>
+    <span class="json-key">"subjects"</span>: <span class="json-number"><xsl:value-of select="count(oppeaasta/oppeaine)"/></span>
   <span class="json-bracket">}</span><span class="json-comma">,</span>
-  <span class="json-key">"tasks"</span>: <span class="json-bracket">[</span><xsl:for-each select="tasks/task">
+  <span class="json-key">"tasks"</span>: <span class="json-bracket">[</span><xsl:for-each select="//task">
     <span class="json-bracket">{</span>
       <span class="json-key">"id"</span>: <span class="json-number"><xsl:value-of select="id"/></span><span class="json-comma">,</span>
       <span class="json-key">"kuupaev"</span>: <span class="json-string">"<xsl:value-of select="kuupaev"/>"</span><span class="json-comma">,</span>
@@ -291,10 +291,10 @@
       <span class="json-key">"info"</span>: <span class="json-string">"<xsl:value-of select="info"/>"</span>
     <span class="json-bracket">}</span><xsl:if test="position() != last()"><span class="json-comma">,</span></xsl:if></xsl:for-each>
   <span class="json-bracket">]</span><span class="json-comma">,</span>
-  <span class="json-key">"subjects"</span>: <span class="json-bracket">[</span><xsl:for-each select="tasks/task[not(oppeaine = preceding-sibling::task/oppeaine)]">
+  <span class="json-key">"subjects"</span>: <span class="json-bracket">[</span><xsl:for-each select="oppeaasta/oppeaine">
     <span class="json-bracket">{</span>
-      <span class="json-key">"name"</span>: <span class="json-string">"<xsl:value-of select="oppeaine"/>"</span><span class="json-comma">,</span>
-      <span class="json-key">"taskCount"</span>: <span class="json-number"><xsl:value-of select="count(../../task[oppeaine = current()/oppeaine])"/></span>
+      <span class="json-key">"name"</span>: <span class="json-string">"<xsl:value-of select="@name"/>"</span><span class="json-comma">,</span>
+      <span class="json-key">"taskCount"</span>: <span class="json-number"><xsl:value-of select="count(.//task)"/></span>
     <span class="json-bracket">}</span><xsl:if test="position() != last()"><span class="json-comma">,</span></xsl:if></xsl:for-each>
   <span class="json-bracket">]</span>
 <span class="json-bracket">}</span></div>
@@ -305,10 +305,10 @@
   "meta": {
     "version": "1.0",
     "generated": "2025-12-03",
-    "totalTasks": <xsl:value-of select="count(tasks/task)"/>,
-    "subjects": <xsl:value-of select="count(tasks/task[not(oppeaine = preceding-sibling::task/oppeaine)])"/>
+    "totalTasks": <xsl:value-of select="count(//task)"/>,
+    "subjects": <xsl:value-of select="count(oppeaasta/oppeaine)"/>
   },
-  "tasks": [<xsl:for-each select="tasks/task">
+  "tasks": [<xsl:for-each select="//task">
     {
       "id": <xsl:value-of select="id"/>,
       "kuupaev": "<xsl:value-of select="kuupaev"/>",
@@ -318,10 +318,10 @@
       "info": "<xsl:value-of select="info"/>"
     }<xsl:if test="position() != last()">,</xsl:if></xsl:for-each>
   ],
-  "subjects": [<xsl:for-each select="tasks/task[not(oppeaine = preceding-sibling::task/oppeaine)]">
+  "subjects": [<xsl:for-each select="oppeaasta/oppeaine">
     {
-      "name": "<xsl:value-of select="oppeaine"/>",
-      "taskCount": <xsl:value-of select="count(../../task[oppeaine = current()/oppeaine])"/>
+      "name": "<xsl:value-of select="@name"/>",
+      "taskCount": <xsl:value-of select="count(.//task)"/>
     }<xsl:if test="position() != last()">,</xsl:if></xsl:for-each>
   ]
 }</textarea>
@@ -397,3 +397,4 @@
         </html>
     </xsl:template>
 </xsl:stylesheet>
+

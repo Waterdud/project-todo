@@ -1,4 +1,4 @@
 <?php
-// Redirect to tasks.xml
-header('Location: tasks.xml');
+// Redirect to view.php (home view)
+header('Location: view.php?view=home');
 exit;

@@ -276,9 +276,9 @@
 
                     <div class="navigation">
                         <div class="nav-buttons">
-                            <a href="tasks.xml" class="nav-btn">Avaleht</a>
-                            <a href="todo_add.xml" class="nav-btn active">Lisa ülesanne</a>
-                            <a href="todo_json.xml" class="nav-btn">JSON</a>
+                            <a href="view.php?view=home" class="nav-btn">Avaleht</a>
+                            <a href="view.php?view=add" class="nav-btn active">Lisa ülesanne</a>
+                            <a href="view.php?view=json" class="nav-btn">JSON</a>
                         </div>
                     </div>
 
@@ -291,7 +291,7 @@
 
                             <form id="taskForm" onsubmit="return handleFormSubmit(event);">
                                 <!-- ID будет автоматически сгенерирован -->
-                                <input type="hidden" name="id" value="{count(tasks/task) + 1}"/>
+                                <input type="hidden" name="id" value="{count(//task) + 1}"/>
 
                                 <div class="form-group">
                                     <label for="kuupaev">Kuupäev (Date Created) <span class="required">*</span></label>
@@ -307,16 +307,16 @@
 
                                 <div class="form-group">
                                     <label for="oppeaine">Õppeaine (Subject) <span class="required">*</span></label>
-                                    <input type="text" id="oppeaine" name="oppeaine" placeholder="Введите название предмета" required="required" maxlength="50"/>
+                                    <input type="text" id="oppeaine" name="oppeaine" placeholder="Sisestage üksuse nimi" required="required" maxlength="50"/>
                                     <div class="form-hint">Õppeaine või ülesande kategooria</div>
 
                                     <div class="existing-subjects">
                                         <h4>Olemasolevad ained:</h4>
                                         <div class="subject-tags">
-                                            <xsl:for-each select="tasks/task[not(oppeaine = preceding-sibling::task/oppeaine)]">
-                                                <xsl:sort select="oppeaine"/>
+                                            <xsl:for-each select="oppeaasta/oppeaine">
+                                                <xsl:sort select="@name"/>
                                                 <span class="subject-tag" onclick="document.getElementById('oppeaine').value = this.textContent">
-                                                    <xsl:value-of select="oppeaine"/>
+                                                    <xsl:value-of select="@name"/>
                                                 </span>
                                             </xsl:for-each>
                                         </div>
@@ -337,15 +337,15 @@
 
                                 <div class="button-group">
                                     <button type="button" class="btn btn-primary" onclick="handleFormSubmit(event)">Loo ülesanne</button>
-                                    <a href="tasks.xml" class="btn btn-secondary">Tühista</a>
+                                    <a href="view.php?view=home" class="btn btn-secondary">Tühista</a>
                                 </div>
                             </form>
 
                             <!-- Praegused ülesanded Preview -->
                             <div style="margin-top: 40px; padding: 20px; background-color: #f9f9f9; border-radius: 5px;">
-                                <h3 style="color: #666; margin-bottom: 15px;">Praegused ülesanded (<xsl:value-of select="count(tasks/task)"/>):</h3>
+                                <h3 style="color: #666; margin-bottom: 15px;">Praegused ülesanded (<xsl:value-of select="count(//task)"/>):</h3>
                                 <div style="max-height: 200px; overflow-y: auto;">
-                                    <xsl:for-each select="tasks/task">
+                                    <xsl:for-each select="//task">
                                         <xsl:sort select="id" data-type="number"/>
                                         <div style="padding: 8px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between;">
                                             <span><strong><xsl:value-of select="ylesanne"/></strong> (<xsl:value-of select="oppeaine"/>)</span>
@@ -446,14 +446,14 @@
                             if (result.success) {
                                 alert(`Ülesanne edukalt salvestatud!\nID: ${result.id}\n\nLäheme avalehele.`);
                                 closeModal();
-                                window.location.href = 'tasks.xml';
+                                window.location.href = 'view.php?view=home';
                             } else {
                                 alert(`Salvestamise viga: ${result.message}`);
                             }
                         })
                         .catch(error => {
                             console.error('Error:', error);
-                            alert('Võrguviga ülesande salvestamisel.\n\nVeenduge, et:\n1. PHP server töötab\n2. save_task.php fail on olemas\n3. tasks.xml fail on kirjutatav');
+                            alert('Võrguviga ülesande salvestamisel.\n\nVeenduge, et:\n1. PHP server töötab\n2. save_task.php fail on olemas\n3. view.php?view=home fail on kirjutatav');
                         });
                     }
 
@@ -496,3 +496,4 @@
         </html>
     </xsl:template>
 </xsl:stylesheet>
+

@@ -3,14 +3,7 @@
 <oppeaasta name="2025">
   <oppeaine name="Matemaatika">
     <ylesandetyyp type="Kodutöö">
-      <task>
-        <id>1</id>
-        <kuupaev>2025-01-15</kuupaev>
-        <tahtaeg>2025-01-20</tahtaeg>
-        <oppeaine>Matemaatika</oppeaine>
-        <info>Lahendada ülesanded 1-10</info>
-        <ylesanne>Kodutöö nr 3</ylesanne>
-      </task>
+      
     </ylesandetyyp>
     <ylesandetyyp type="Kontrolltöö">
       <task>
@@ -23,17 +16,9 @@
       </task>
     </ylesandetyyp>
   </oppeaine>
-  
   <oppeaine name="Programmeerimine">
     <ylesandetyyp type="Projekt">
-      <task>
-        <id>2</id>
-        <kuupaev>2025-01-10</kuupaev>
-        <tahtaeg>2025-01-25</tahtaeg>
-        <oppeaine>Programmeerimine</oppeaine>
-        <info>Luua TODO rakendus</info>
-        <ylesanne>Projekt</ylesanne>
-      </task>
+      
     </ylesandetyyp>
     <ylesandetyyp type="Laboritöö">
       <task>
@@ -46,7 +31,6 @@
       </task>
     </ylesandetyyp>
   </oppeaine>
-  
   <oppeaine name="Andmebaasid">
     <ylesandetyyp type="Praktikum">
       <task>
@@ -67,30 +51,22 @@
         <info>Normaliseerimise reeglid</info>
         <ylesanne>Kodutöö 2</ylesanne>
       </task>
-      <task>
-        <id>7</id>
-        <kuupaev>2025-12-03</kuupaev>
-        <tahtaeg>2025-12-04</tahtaeg>
-        <oppeaine>Andmebaasid</oppeaine>
-        <ylesanne>123</ylesanne>
-        <info>123</info>
-      </task>
-      <task>
-        <id>8</id>
-        <kuupaev>2025-12-03</kuupaev>
-        <tahtaeg>2025-12-27</tahtaeg>
-        <oppeaine>Andmebaasid</oppeaine>
-        <ylesanne>1234</ylesanne>
-        <info/>
-      </task>
-      <task>
-        <id>9</id>
-        <kuupaev>2025-12-13</kuupaev>
-        <tahtaeg>2025-12-14</tahtaeg>
-        <oppeaine>Andmebaasid</oppeaine>
-        <ylesanne>asd</ylesanne>
-        <info>asd</info>
-      </task>
     </ylesandetyyp>
   </oppeaine>
+  <task>
+    <id>1</id>
+    <kuupaev>2025-12-10</kuupaev>
+    <tahtaeg>2025-12-19</tahtaeg>
+    <oppeaine>Matemaatika</oppeaine>
+    <ylesanne>123</ylesanne>
+    <info>123</info>
+  </task>
+  <task>
+    <id>2</id>
+    <kuupaev>2025-12-19</kuupaev>
+    <tahtaeg>2025-12-31</tahtaeg>
+    <oppeaine>Programmeerimine</oppeaine>
+    <ylesanne>Documentation teed</ylesanne>
+    <info>Loo Wordi fail vastavalt TTHK vormindusreeglitele.</info>
+  </task>
 </oppeaasta>

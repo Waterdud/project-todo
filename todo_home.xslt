@@ -300,6 +300,97 @@
                 </style>
             </head>
             <body>
+                <script>
+                <![CDATA[
+                // Delete task function
+                function deleteTask(taskId) {
+                    if (!confirm('Kas olete kindel, et soovite selle ülesande kustutada?')) {
+                        return;
+                    }
+                    
+                    fetch('delete_task.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ id: taskId })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Ülesanne edukalt kustutatud!');
+                            window.location.reload();
+                        } else {
+                            alert('Viga: ' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Kustutamine ebaõnnestus: ' + error);
+                    });
+                }
+                
+                // Sort table function
+                function sortTable(column) {
+                    const table = document.querySelector('tbody');
+                    const rows = Array.from(table.querySelectorAll('tr'));
+                    
+                    rows.sort((a, b) => {
+                        let aVal, bVal;
+                        
+                        switch(column) {
+                            case 'id':
+                                aVal = parseInt(a.cells[0].textContent);
+                                bVal = parseInt(b.cells[0].textContent);
+                                break;
+                            case 'date':
+                                aVal = new Date(a.cells[1].textContent);
+                                bVal = new Date(b.cells[1].textContent);
+                                break;
+                            case 'deadline':
+                                aVal = new Date(a.cells[2].textContent);
+                                bVal = new Date(b.cells[2].textContent);
+                                break;
+                            case 'subject':
+                                aVal = a.cells[3].textContent.toLowerCase();
+                                bVal = b.cells[3].textContent.toLowerCase();
+                                break;
+                        }
+                        
+                        return aVal > bVal ? 1 : aVal < bVal ? -1 : 0;
+                    });
+                    
+                    rows.forEach(row => table.appendChild(row));
+                }
+                
+                // Filter by subject
+                function filterBySubject(subject) {
+                    const rows = document.querySelectorAll('tbody tr');
+                    
+                    rows.forEach(row => {
+                        if (subject === 'all') {
+                            row.style.display = '';
+                        } else {
+                            const subjectCell = row.cells[3].textContent;
+                            row.style.display = subjectCell === subject ? '' : 'none';
+                        }
+                    });
+                }
+                
+                // Update stats after filtering
+                function updateStats() {
+                    const visibleRows = document.querySelectorAll('tbody tr:not([style*="display: none"])');
+                    const subjects = new Set();
+                    
+                    visibleRows.forEach(row => {
+                        subjects.add(row.cells[3].textContent);
+                    });
+                    
+                    document.querySelectorAll('.stat-number')[0].textContent = visibleRows.length;
+                    document.querySelectorAll('.stat-number')[1].textContent = subjects.size;
+                }
+                ]]>
+                </script>
                 <div class="container">
                     <!-- Header -->
                     <div class="header">
@@ -309,9 +400,9 @@
                     <!-- Navigation -->
                     <div class="navigation">
                         <div class="nav-buttons">
-                            <a href="tasks.xml" class="nav-btn active">Avaleht</a>
-                            <a href="todo_add.xml" class="nav-btn">Lisa ülesanne</a>
-                            <a href="todo_json.xml" class="nav-btn">JSON</a>
+                            <a href="view.php?view=home" class="nav-btn active">Avaleht</a>
+                            <a href="view.php?view=add" class="nav-btn">Lisa ülesanne</a>
+                            <a href="view.php?view=json" class="nav-btn">JSON</a>
                         </div>
                     </div>
 
@@ -320,11 +411,11 @@
                         <!-- Statistics -->
                         <div class="stats">
                             <div class="stat-item">
-                                <span class="stat-number"><xsl:value-of select="count(tasks/task)"/></span>
+                                <span class="stat-number"><xsl:value-of select="count(//task)"/></span>
                                 <span class="stat-label">Ülesandeid kokku</span>
                             </div>
                             <div class="stat-item">
-                                <span class="stat-number"><xsl:value-of select="count(tasks/task[not(oppeaine = preceding-sibling::task/oppeaine)])"/></span>
+                                <span class="stat-number"><xsl:value-of select="count(oppeaasta/oppeaine)"/></span>
                                 <span class="stat-label">Aineid</span>
                             </div>
                         </div>
@@ -333,9 +424,23 @@
                         <div class="sort-panel">
                             <div style="color: #666; margin-bottom: 10px; font-weight: 600;">Sorteeri:</div>
                             <div class="sort-buttons">
-                                <a href="todo_sort_id.xml" class="sort-btn">ID järgi</a>
-                                <a href="todo_sort_date.xml" class="sort-btn">Tähtaja järgi</a>
-                                <a href="todo_sort_subject.xml" class="sort-btn">Õppeaine järgi</a>
+                                <button onclick="sortTable('id')" class="sort-btn" style="border: none; cursor: pointer;">ID järgi</button>
+                                <button onclick="sortTable('deadline')" class="sort-btn" style="border: none; cursor: pointer;">Tähtaja järgi</button>
+                                <button onclick="sortTable('subject')" class="sort-btn" style="border: none; cursor: pointer;">Õppeaine järgi</button>
+                            </div>
+                        </div>
+
+                        <!-- Filter by Subject -->
+                        <div class="sort-panel" style="margin-top: 20px;">
+                            <div style="color: #666; margin-bottom: 10px; font-weight: 600;">Filtreeri õppeaine järgi:</div>
+                            <div class="sort-buttons">
+                                <button onclick="filterBySubject('all')" class="sort-btn" style="border: none; cursor: pointer;">Näita kõiki</button>
+                                <xsl:for-each select="oppeaasta/oppeaine">
+                                    <xsl:sort select="@name"/>
+                                    <button onclick="filterBySubject('{@name}')" class="sort-btn" style="border: none; cursor: pointer;">
+                                        <xsl:value-of select="@name"/>
+                                    </button>
+                                </xsl:for-each>
                             </div>
                         </div>
 
@@ -344,17 +449,18 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th><a href="todo_sort_id.xml">ID ↕</a></th>
+                                        <th style="cursor: pointer;" onclick="sortTable('id')">ID ↕</th>
                                         <th>Kuupäev</th>
-                                        <th><a href="todo_sort_date.xml">Tähtaeg ↕</a></th>
-                                        <th><a href="todo_sort_subject.xml">Õppeaine ↕</a></th>
+                                        <th style="cursor: pointer;" onclick="sortTable('deadline')">Tähtaeg ↕</th>
+                                        <th style="cursor: pointer;" onclick="sortTable('subject')">Õppeaine ↕</th>
                                         <th>Ülesanne</th>
                                         <th>Info</th>
+                                        <th style="width: 80px; text-align: center;">Tegevused</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <!-- Default sorting by ID -->
-                                    <xsl:apply-templates select="tasks/task">
+                                    <xsl:apply-templates select="//task">
                                         <xsl:sort select="id" data-type="number" order="ascending"/>
                                     </xsl:apply-templates>
                                 </tbody>
@@ -377,6 +483,11 @@
             <td class="task-subject"><xsl:value-of select="oppeaine"/></td>
             <td><strong><xsl:value-of select="ylesanne"/></strong></td>
             <td><xsl:value-of select="info"/></td>
+            <td style="text-align: center;">
+                <button onclick="deleteTask({id})" style="padding: 6px 12px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; transition: background-color 0.2s;">
+                    Kustuta
+                </button>
+            </td>
         </tr>
     </xsl:template>
 </xsl:stylesheet>
